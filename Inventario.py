@@ -41,4 +41,7 @@ def Unidades_en_inventario(Le, D):
     return U
 Unidades_en_inventario(Inventario, Variables.D)
 
-}
+def Costo_total(K, D, h, y):
+    CTU = ( (K * D) / y ) + ( (h * y) / 2 )
+    print("El costo total :   ", CTU)
+Costo_total(Variables.k, Variables.D, Variables.h, cantidad_pedido) 
