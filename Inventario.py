@@ -1,18 +1,21 @@
 import math 
 class Producto:
-    def __init__(self, K, D, h, L):
+    def __init__(self, K, D, h, L,Descuento):
         self.k = K
         self.D = D
         self.h = h
         self.L = L
-K_costo_producto = float(input("Ingresa el Valor de k:  "))
-D_demanda= float(input("Ingresa el Valor de D:  "))
-h_costo_mantenimiento= float(input("Ingresa el Valor de h:  "))  
+        self.Descuento = Descuento
+K_costo_producto = float(input(" Ingresa el valor de tu costo por pedido (k):  "))
+D_demanda= float(input("Ingresa el Valor de tu demanda (D):  "))
+h_costo_mantenimiento = float(input("Ingresa el valor de tu costo de mantenimiento (h):  "))  
 L_dias_pedido= float(input("Ingresa el numero de dias en que realizas un pedido:  "))  
-Variables=Producto(K_costo_producto, D_demanda, h_costo_mantenimiento, L_dias_pedido ) 
+Descuento = float(input("Ingresa el valor del descuento :  ")) /100  
+Variables=Producto(K_costo_producto, D_demanda, h_costo_mantenimiento, L_dias_pedido,Descuento)   
+
 def Cantidad_de_Pedido(K, D, h):
     y= math.sqrt(2 * K * D / h)
-    print("La cantidad del pedido es:   ", y)
+    print("La cantidad del pedido es:    ", y)
     return y
 cantidad_pedido = Cantidad_de_Pedido(Variables.k, Variables.D, Variables.h)  
 
@@ -45,3 +48,9 @@ def Costo_total(K, D, h, y):
     CTU = ( (K * D) / y ) + ( (h * y) / 2 )
     print("El costo total :   ", CTU)
 Costo_total(Variables.k, Variables.D, Variables.h, cantidad_pedido) 
+
+def Costo_total_con_descuento(costo_total_descuento, D, h, y):
+    CTD = ((costo_total_descuento * D) / y) + ((h * y) / 2)
+    print("Costo total con descuento:   ", CTD)
+costo_con_descuento = Variables.k * (1 - Variables.Descuento)
+Costo_total_con_descuento(costo_con_descuento, Variables.D, Variables.h, cantidad_pedido)
